@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine eSports & Coaching - Free Rocket League Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(102, 126, 234, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 2rem;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e0c3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.4s both;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #fff, #e0c3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* About Us Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .about-stat {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e0c3fc;
+            display: block;
+        }
+
+        /* Coaching Methods */
+        .coaching-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .method-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .method-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .method-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #e0c3fc;
+        }
+
+        /* Discord Features */
+        .discord-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .discord-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .discord-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .discord-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .discord-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #e0c3fc;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .discord-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Coaching Tiers */
+        .tiers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tier-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card.bronze {
+            border-color: #cd7f32;
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.1), rgba(255, 255, 255, 0.1));
+        }
+
+        .tier-card.silver {
+            border-color: #c0c0c0;
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(255, 255, 255, 0.1));
+        }
+
+        .tier-card.gold {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0.1));
+        }
+
+        .tier-card.diamond {
+            border-color: #b9f2ff;
+            background: linear-gradient(135deg, rgba(185, 242, 255, 0.1), rgba(255, 255, 255, 0.1));
+        }
+
+        .tier-card.platinum {
+            border-color: #00d4ff;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 255, 255, 0.1));
+        }
+
+        .tier-card.emerald {
+            border-color: #50c878;
+            background: linear-gradient(135deg, rgba(80, 200, 120, 0.1), rgba(255, 255, 255, 0.1));
+        }
+
+        .tier-card.ruby {
+            border-color: #e0115f;
+            background: linear-gradient(135deg, rgba(224, 17, 95, 0.1), rgba(255, 255, 255, 0.1));
+        }
+
+        .tier-card.iridescent {
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #ff0080, #00ff80, #8000ff, #ff8000) 1;
+            background: linear-gradient(135deg, 
+                rgba(255, 0, 128, 0.1), 
+                rgba(0, 255, 128, 0.1), 
+                rgba(128, 0, 255, 0.1), 
+                rgba(255, 128, 0, 0.1));
+            animation: iridescent 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes iridescent {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .discord-widget-container {
+            margin-top: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .widget-card {
+            grid-column: span 2;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .tier-badge {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-benefits {
+            list-style: none;
+            text-align: left;
+        }
+
+        .tier-benefits li {
+            padding: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .tier-benefits li::before {
+            content: "✓ ";
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e0c3fc;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #e0c3fc;
+        }
+
+        .testimonial-rank {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Esports Section */
+        .esports-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .esports-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .esports-teams {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-division {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .team-content {
+            padding: 1.5rem;
+        }
+
+        .team-requirements {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-requirements li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .team-requirements li:last-child {
+            border-bottom: none;
+        }
+
+        .team-roster {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .team-roster-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #e0c3fc;
+        }
+
+        .roster-empty {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .join-team-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .join-team-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .tiers-container {
+                grid-template-columns: 1fr;
+            }
+
+            .widget-card {
+                grid-column: span 1;
+            }
+            
+            .discord-widget-container iframe {
+                height: 350px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wmremove-transformed__1_-removebg-preview-ck4vBjhYwQfmncZmNG8p2ucTwEl5ih.png" alt="Divine eSports & Coaching Logo" class="nav-logo">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#coaching">Coaching</a></li>
+                <li><a href="#esports">Esports</a></li>
+                <li><a href="#tiers">Tiers</a></li>
+                <li><a href="https://discord.gg/divinerl/" target="_blank">Join Discord</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Divine eSports & Coaching</h1>
+        <p>Elevate your Rocket League skills with our elite coaching community and competitive esports teams. Join thousands of players who have transformed their gameplay through our proven tier-based progression system.</p>
+        <div>
+            <a href="https://discord.gg/divinerl/" target="_blank" class="cta-button">Join Divine</a>
+            <a href="#coaching" class="cta-button secondary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="section">
+        <h2>About Divine eSports & Coaching</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Founded in 2022 by a group of Grand Champion players, Divine eSports & Coaching was born from a simple belief: everyone deserves access to high-quality Rocket League training, regardless of their financial situation.</p>
+                
+                <p>Our founders, who collectively have over 15,000 hours in Rocket League and have competed in RLCS qualifiers, noticed a gap in the community. While expensive coaching services existed, there was no comprehensive, free platform that could help players of all skill levels improve systematically.</p>
+                
+                <p>What started as a small Discord server with 50 members has grown into a thriving community of over 2,000 active players and multiple competitive esports teams. Our unique tier-based progression system ensures that every member receives coaching appropriate to their skill level and commitment to improvement.</p>
+                
+                <p>Today, Divine eSports & Coaching is proud to have helped over 5,000 players rank up, with many achieving their dream ranks and some even going on to compete professionally on our esports rosters.</p>
+            </div>
+            <div class="about-stats">
+                <div class="about-stat">
+                    <span class="about-stat-number">2022</span>
+                    <div class="stat-label">Founded</div>
+                </div>
+                <div class="about-stat">
+                    <span class="about-stat-number">2000+</span>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                <div class="about-stat">
+                    <span class="about-stat-number">5000+</span>
+                    <div class="stat-label">Players Helped</div>
+                </div>
+                <div class="about-stat">
+                    <span class="about-stat-number">100%</span>
+                    <div class="stat-label">Free Forever</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Methods Section -->
+    <section id="coaching" class="section">
+        <h2>Our Coaching Methods</h2>
+        <div class="coaching-methods">
+            <div class="method-card">
+                <span class="method-icon">🎯</span>
+                <h3>Personalized Analysis</h3>
+                <p>Every player receives a custom analysis of their gameplay, identifying specific areas for improvement based on their current rank and playstyle.</p>
+            </div>
+            <div class="method-card">
+                <span class="method-icon">📹</span>
+                <h3>Replay Reviews</h3>
+                <p>Our coaches analyze your replays in detail, providing timestamped feedback on positioning, decision-making, and mechanical execution.</p>
+            </div>
+            <div class="method-card">
+                <span class="method-icon">🏋️</span>
+                <h3>Custom Training Packs</h3>
+                <p>Receive training packs specifically designed for your skill level and the mechanics you need to master for your next rank up.</p>
+            </div>
+            <div class="method-card">
+                <span class="method-icon">🎮</span>
+                <h3>Live Coaching Sessions</h3>
+                <p>One-on-one sessions where coaches watch you play in real-time, providing instant feedback and guidance during matches.</p>
+            </div>
+            <div class="method-card">
+                <span class="method-icon">📚</span>
+                <h3>Educational Resources</h3>
+                <p>Access our extensive library of guides, tutorials, and educational content covering everything from basic mechanics to advanced strategies.</p>
+            </div>
+            <div class="method-card">
+                <span class="method-icon">👥</span>
+                <h3>Group Training</h3>
+                <p>Participate in group sessions focusing on specific skills like rotation, team play, and communication with players at your level.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Esports Section -->
+    <section id="esports" class="section">
+        <h2>Divine Esports</h2>
+        <div class="esports-header">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wmremove-transformed__1_-removebg-preview-ck4vBjhYwQfmncZmNG8p2ucTwEl5ih.png" alt="Divine eSports Logo" class="esports-logo">
+            <p>Our competitive teams represent the pinnacle of Divine talent, competing in tournaments across all skill levels.</p>
+        </div>
+        
+        <div class="esports-teams">
+            <div class="team-card">
+                <div class="team-header">
+                    <div class="team-name">RLCS Team</div>
+                    <div class="team-division">Supersonic Legend Division</div>
+                </div>
+                <div class="team-content">
+                    <h4>Requirements:</h4>
+                    <ul class="team-requirements">
+                        <li>🏆 SSL this season or last season</li>
+                        <li>🎮 Must play all scrims</li>
+                        <li>🧠 Game sense, positioning, and team comms required</li>
+                        <li>📅 Must be available for scheduled practices/events</li>
+                        <li>✅ 16+ preferred, mature and team-focused</li>
+                    </ul>
+                    <div class="team-roster">
+                        <div class="team-roster-title">Current Roster:</div>
+                        <div class="roster-empty">
+                            <p>We're currently recruiting for this team!</p>
+                            <a href="https://discord.gg/divinerl/" class="join-team-btn">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <div class="team-header">
+                    <div class="team-name">Pro Team</div>
+                    <div class="team-division">Grand Champion Division</div>
+                </div>
+                <div class="team-content">
+                    <h4>Requirements:</h4>
+                    <ul class="team-requirements">
+                        <li>🏆 GC1 to GC3 in current or past season</li>
+                        <li>🎮 Must play weekly scrims & tournaments</li>
+                        <li>🧠 Game sense, positioning, and team comms required</li>
+                        <li>📅 Must be available for scheduled practices/events</li>
+                        <li>✅ 16+ preferred, mature and team-focused</li>
+                    </ul>
+                    <div class="team-roster">
+                        <div class="team-roster-title">Current Roster:</div>
+                        <div class="roster-empty">
+                            <p>We're currently recruiting for this team!</p>
+                            <a href="https://discord.gg/divinerl/" class="join-team-btn">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <div class="team-header">
+                    <div class="team-name">Academy Roster</div>
+                    <div class="team-division">Champion Division</div>
+                </div>
+                <div class="team-content">
+                    <h4>Requirements:</h4>
+                    <ul class="team-requirements">
+                        <li>💠 C1+ to C3 range</li>
+                        <li>📈 Actively improving, coachable, and willing to grind</li>
+                        <li>🧩 Willing to sub for pro scrims if needed</li>
+                        <li>🕒 Semi-active in community events and trainings</li>
+                        <li>🎥 Upload at least 1 replay per week for review</li>
+                    </ul>
+                    <div class="team-roster">
+                        <div class="team-roster-title">Current Roster:</div>
+                        <div class="roster-empty">
+                            <p>We're currently recruiting for this team!</p>
+                            <a href="https://discord.gg/divinerl/" class="join-team-btn">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <div class="team-header">
+                    <div class="team-name">Academy Team 2</div>
+                    <div class="team-division">Platinum/Diamond Division</div>
+                </div>
+                <div class="team-content">
+                    <h4>Requirements:</h4>
+                    <ul class="team-requirements">
+                        <li>🛹 Plat 1+ to D3 range</li>
+                        <li>🔄 Dedicated to improvement with a long-term goal of moving up</li>
+                        <li>📚 Open to coaching, vod reviews, and team feedback</li>
+                        <li>🎯 Participate in community scrims and events</li>
+                        <li>🤝 Positive attitude, respectful in team comms and chats</li>
+                    </ul>
+                    <div class="team-roster">
+                        <div class="team-roster-title">Current Roster:</div>
+                        <div class="roster-empty">
+                            <p>We're currently recruiting for this team!</p>
+                            <a href="https://discord.gg/divinerl/" class="join-team-btn">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord Features Section -->
+    <section class="section">
+        <h2>Discord Community Features</h2>
+        <div class="discord-features">
+            <div class="discord-card">
+                <h3>💬 Dedicated Channels</h3>
+                <p>Specialized channels for different ranks, game modes, and topics. From Bronze strategy discussions to Grand Champion mechanical training.</p>
+                <p><strong>Channels include:</strong> Rank-specific chat, Replay sharing, Training pack exchange, Tournament announcements</p>
+            </div>
+            <div class="discord-card">
+                <h3>🤖 Divine Bot</h3>
+                <p>Our custom bot tracks your progress, schedules coaching sessions, and provides instant access to training resources and statistics.</p>
+                <p><strong>Features:</strong> Progress tracking, Session scheduling, Training pack recommendations, Rank verification</p>
+            </div>
+            <div class="discord-card">
+                <h3>🏆 Weekly Tournaments</h3>
+                <p>Compete in tier-based tournaments with prizes and recognition. Perfect for applying what you've learned in a competitive environment.</p>
+                <p><strong>Tournaments:</strong> 1v1 showcases, 2v2 team events, 3v3 scrimmages, Special themed competitions</p>
+            </div>
+            <div class="discord-card">
+                <h3>📊 Performance Analytics</h3>
+                <p>Track your improvement with detailed statistics and progress reports generated by our coaching team.</p>
+                <p><strong>Analytics:</strong> Rank progression, Session summaries, Skill assessments, Goal tracking</p>
+            </div>
+            <div class="discord-card widget-card">
+                <h3>🎮 Live Server Status</h3>
+                <p>See who's online right now and join the conversation!</p>
+                <div class="discord-widget-container">
+                    <iframe src="https://discord.com/widget?id=1369074703011938354&theme=dark&username=divinerl" 
+                            width="100%" 
+                            height="400" 
+                            allowtransparency="true" 
+                            frameborder="0" 
+                            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Tiers Section -->
+    <section id="tiers" class="section">
+        <h2>Coaching Tiers - Earn Through Activity</h2>
+        <div class="tiers-container">
+            <div class="tier-card bronze">
+                <div class="tier-badge">🥉</div>
+                <div class="tier-title">Bronze Member</div>
+                <ul class="tier-benefits">
+                    <li>Access to general coaching channels</li>
+                    <li>Basic training pack recommendations</li>
+                    <li>Group coaching sessions</li>
+                    <li>Community tournaments</li>
+                    <li>Weekly progress check-ins</li>
+                </ul>
+            </div>
+            <div class="tier-card silver">
+                <div class="tier-badge">🥈</div>
+                <div class="tier-title">Silver Member</div>
+                <ul class="tier-benefits">
+                    <li>All Bronze benefits</li>
+                    <li>Priority in group sessions</li>
+                    <li>Access to intermediate guides</li>
+                    <li>Replay analysis requests</li>
+                    <li>Custom training pack creation</li>
+                </ul>
+            </div>
+            <div class="tier-card gold">
+                <div class="tier-badge">🥇</div>
+                <div class="tier-title">Gold Member</div>
+                <ul class="tier-benefits">
+                    <li>All Silver benefits</li>
+                    <li>1-on-1 coaching sessions</li>
+                    <li>Advanced strategy guides</li>
+                    <li>Direct coach messaging</li>
+                    <li>Exclusive Gold tournaments</li>
+                </ul>
+            </div>
+            <div class="tier-card platinum">
+                <div class="tier-badge">💿</div>
+                <div class="tier-title">Platinum Member</div>
+                <ul class="tier-benefits">
+                    <li>All Gold benefits</li>
+                    <li>Weekly 1-on-1 sessions</li>
+                    <li>Pro-level training materials</li>
+                    <li>Exclusive Plat tournaments</li>
+                    <li>Mentorship opportunities</li>
+                </ul>
+            </div>
+            <div class="tier-card diamond">
+                <div class="tier-badge">💎</div>
+                <div class="tier-title">Diamond Member</div>
+                <ul class="tier-benefits">
+                    <li>All Platinum benefits</li>
+                    <li>Bi-weekly coaching sessions</li>
+                    <li>Advanced mechanics training</li>
+                    <li>Coach role opportunities</li>
+                    <li>Tournament hosting privileges</li>
+                </ul>
+            </div>
+            <div class="tier-card emerald">
+                <div class="tier-badge">💚</div>
+                <div class="tier-title">Emerald Member</div>
+                <ul class="tier-benefits">
+                    <li>All Diamond benefits</li>
+                    <li>Daily coaching access</li>
+                    <li>Custom training creation</li>
+                    <li>VIP tournament access</li>
+                    <li>Community leadership roles</li>
+                </ul>
+            </div>
+            <div class="tier-card ruby">
+                <div class="tier-badge">❤️</div>
+                <div class="tier-title">Ruby Member</div>
+                <ul class="tier-benefits">
+                    <li>All Emerald benefits</li>
+                    <li>Unlimited coaching sessions</li>
+                    <li>Event hosting privileges</li>
+                    <li>Special Ruby tournaments</li>
+                    <li>Direct access to head coaches</li>
+                </ul>
+            </div>
+            <div class="tier-card iridescent">
+                <div class="tier-badge">🌈</div>
+                <div class="tier-title">Iridescent Member</div>
+                <ul class="tier-benefits">
+                    <li>All Ruby benefits</li>
+                    <li>Become a certified coach</li>
+                    <li>Server management roles</li>
+                    <li>Legendary status & rewards</li>
+                    <li>Exclusive RLCS viewing parties</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <h2>Success Stories</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"I went from Gold 2 to Champion 1 in just 3 months with Divine Coaching. The personalized training packs and replay analysis were game-changers!"</div>
+                <div class="testimonial-author">- Alex_RL</div>
+                <div class="testimonial-rank">Gold → Champion</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The community here is incredible. Everyone is supportive and the coaches genuinely care about your improvement. Best decision I made for my RL journey."</div>
+                <div class="testimonial-author">- SkylineGamer</div>
+                <div class="testimonial-rank">Platinum → Grand Champion</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"As a complete beginner, I was intimidated to start. But the Bronze tier coaching was perfect for me. Now I'm Diamond and helping others too!"</div>
+                <div class="testimonial-author">- RocketNewbie</div>
+                <div class="testimonial-rank">Bronze → Diamond</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The tier system keeps me motivated. Each level unlocks new opportunities and the coaching quality is better than paid services I've tried."</div>
+                <div class="testimonial-author">- ProPlayer2024</div>
+                <div class="testimonial-rank">Champion → SSL</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Divine Coaching helped me break through the Champion barrier I was stuck at for months. The advanced mechanics training is top-tier."</div>
+                <div class="testimonial-author">- MechanicMaster</div>
+                <div class="testimonial-rank">Champion → Grand Champion</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Not only did I improve my gameplay, but I also made lifelong friends. The community aspect is what sets Divine Coaching apart."</div>
+                <div class="testimonial-author">- TeamPlayer99</div>
+                <div class="testimonial-rank">Diamond → Champion</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section">
+        <h2>Community Impact</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">2000+</span>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">75+</span>
+                <div class="stat-label">Certified Coaches</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">15,000+</span>
+                <div class="stat-label">Coaching Sessions</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5000+</span>
+                <div class="stat-label">Players Ranked Up</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">24/7</span>
+                <div class="stat-label">Community Support</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">98%</span>
+                <div class="stat-label">Satisfaction Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.discord-card, .tier-card, .method-card, .testimonial-card, .team-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(102, 126, 234, 0.2)';
+            } else {
+                navbar.style.background = 'rgba(102, 126, 234, 0.1)';
+            }
+        });
+
+        // Add staggered animation to cards
+        const cards = document.querySelectorAll('.discord-card, .tier-card, .method-card, .testimonial-card, .team-card');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Interactive hover effects
+        document.querySelectorAll('.discord-card, .tier-card, .stat-card, .method-card, .testimonial-card, .team-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.classList.contains('tier-card') ? 
+                    'translateY(-10px) scale(1.02)' : 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Logo hover effect
+        document.querySelector('.nav-logo').addEventListener('mouseenter', function() {
+            this.style.filter = 'drop-shadow(0 0 20px rgba(224, 195, 252, 0.8))';
+        });
+
+        document.querySelector('.nav-logo').addEventListener('mouseleave', function() {
+            this.style.filter = 'none';
+        });
+    </script>
+</body>
+</html>
